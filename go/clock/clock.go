@@ -9,7 +9,7 @@ type Clock struct {
 }
 
 func Time(hour, minute int) Clock {
-	return Clock{hour%24 + minute/60, minute % 60}.normalizing()
+	return Clock{hour, minute}.normalizing()
 }
 
 func (c Clock) String() string {
@@ -17,21 +17,22 @@ func (c Clock) String() string {
 }
 
 func (c Clock) Add(minutes int) Clock {
-	c.m += minutes
-	return c.normalizing()
+	return Time(c.h, c.m+minutes)
 }
 
 func (c Clock) normalizing() Clock {
-	c.h += c.m / 60
-	c.m %= 60
-	if c.m < 0 {
-		c.m += 60
-		c.h -= 1
+	timeCarry := func(v, limit int) (int, int) {
+		carry := v / limit
+		remain := v % limit
+		if remain < 0 {
+			carry -= 1
+			remain += limit
+		}
+		return remain, carry
 	}
 
-	c.h %= 24
-	if c.h < 0 {
-		c.h += 24
-	}
+	var carry int
+	c.m, carry = timeCarry(c.m, 60)
+	c.h, _ = timeCarry(c.h+carry, 24)
 	return c
 }
