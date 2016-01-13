@@ -4,35 +4,25 @@ import "fmt"
 
 const TestVersion = 2
 
-type Clock struct {
-	h, m int
+type Clock int
+
+func NewClock(minutes int) Clock {
+	minutes_in_a_day := 60 * 24
+	minutes %= minutes_in_a_day
+	if minutes < 0 {
+		minutes += minutes_in_a_day
+	}
+	return Clock(minutes)
 }
 
 func Time(hour, minute int) Clock {
-	return Clock{hour, minute}.normalizing()
+	return NewClock(hour*60 + minute)
 }
 
 func (c Clock) String() string {
-	return fmt.Sprintf("%02d:%02d", c.h, c.m)
+	return fmt.Sprintf("%02d:%02d", c/60, c%60)
 }
 
 func (c Clock) Add(minutes int) Clock {
-	return Time(c.h, c.m+minutes)
-}
-
-func (c Clock) normalizing() Clock {
-	timeCarry := func(v, limit int) (int, int) {
-		carry := v / limit
-		remain := v % limit
-		if remain < 0 {
-			carry -= 1
-			remain += limit
-		}
-		return remain, carry
-	}
-
-	var carry int
-	c.m, carry = timeCarry(c.m, 60)
-	c.h, _ = timeCarry(c.h+carry, 24)
-	return c
+	return NewClock(int(c) + minutes)
 }
