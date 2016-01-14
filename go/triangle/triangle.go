@@ -1,5 +1,3 @@
-//+build !example
-
 package triangle
 
 type Kind int
