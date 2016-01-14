@@ -13,13 +13,13 @@ var secretCode = []struct {
 var (
 	secretLen int = len(secretCode)
 	reverse   int = 1 << uint(secretLen)
-	all_code  int = reverse - 1
+	allCode   int = reverse - 1
 )
 
 func Handshake(val int) []string {
 	res := make([]string, 0, 4)
 
-	if val <= 0 || all_code&val == 0 {
+	if val <= 0 || allCode&val == 0 {
 		return nil
 	}
 
