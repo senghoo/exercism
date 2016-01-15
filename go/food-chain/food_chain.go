@@ -9,26 +9,9 @@ type foodChain struct {
 	noun, desc, attr string
 }
 
-func (f foodChain) Desc() string {
-	if f.desc == "" && f.attr != "" {
-		return "It " + f.attr + "\n"
-	}
-	if f.desc != "" {
-		return f.desc + "\n"
-	}
-	return ""
-}
-
-func (f foodChain) Attr() string {
-	if f.attr != "" {
-		return " that " + f.attr[0:len(f.attr)-1]
-	}
-	return f.attr
-}
-
 var foodChains = []foodChain{
 	{"fly", "", ""},
-	{"spider", "", "wriggled and jiggled and tickled inside her."},
+	{"spider", "", "wriggled and jiggled and tickled inside her"},
 	{"bird", "How absurd to swallow a bird!", ""},
 	{"cat", "Imagine that, to swallow a cat!", ""},
 	{"dog", "What a hog, to swallow a dog!", ""},
@@ -67,4 +50,21 @@ func Verses(start, end int) string {
 
 func Song() string {
 	return Verses(1, 8)
+}
+
+func (f foodChain) Desc() string {
+	if f.desc == "" && f.attr != "" {
+		return "It " + f.attr + ".\n"
+	}
+	if f.desc != "" {
+		return f.desc + "\n"
+	}
+	return ""
+}
+
+func (f foodChain) Attr() string {
+	if f.attr != "" {
+		return " that " + f.attr
+	}
+	return f.attr
 }
