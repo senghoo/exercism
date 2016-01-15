@@ -4,21 +4,21 @@ import "strconv"
 
 const TestVersion = 1
 
-type RainDrop struct {
+type rainDrop struct {
 	prime int
 	str   string
 }
 
 func Convert(input int) string {
-	inputDivisbleBy := func(x int) bool {
+	DivisbleBy := func(x int) bool {
 		return (input % x) == 0
 	}
 
-	raindrops := [...]RainDrop{{3, "Pling"}, {5, "Plang"}, {7, "Plong"}}
+	raindrops := [...]rainDrop{{3, "Pling"}, {5, "Plang"}, {7, "Plong"}}
 
-	res := ""
+	var res string
 	for _, i := range raindrops {
-		if inputDivisbleBy(i.prime) {
+		if DivisbleBy(i.prime) {
 			res += i.str
 		}
 	}
