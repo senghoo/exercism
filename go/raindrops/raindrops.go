@@ -10,7 +10,7 @@ type rainDrop struct {
 }
 
 func Convert(input int) string {
-	DivisbleBy := func(x int) bool {
+	divisbleBy := func(x int) bool {
 		return (input % x) == 0
 	}
 
@@ -18,7 +18,7 @@ func Convert(input int) string {
 
 	var res string
 	for _, i := range raindrops {
-		if DivisbleBy(i.prime) {
+		if divisbleBy(i.prime) {
 			res += i.str
 		}
 	}
