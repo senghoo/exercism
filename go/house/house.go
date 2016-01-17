@@ -20,10 +20,12 @@ var (
 	noun = "the house that Jack built."
 )
 
+// Embed work like relPhrase + nounPhrase
 func Embed(relPhrase, nounPhrase string) string {
 	return relPhrase + " " + nounPhrase
 }
 
+// Verse generate verse
 func Verse(subject string, relPhrases []string, nounPhrase string) string {
 	if len(relPhrases) <= 0 {
 		return Embed(subject, nounPhrase)
@@ -31,6 +33,7 @@ func Verse(subject string, relPhrases []string, nounPhrase string) string {
 	return Verse(Embed(subject, relPhrases[0]), relPhrases[1:], nounPhrase)
 }
 
+// Song return the neusery rhyme
 func Song() string {
 	relSize := len(rel)
 	lyrics := make([]string, 0, relSize+1)
