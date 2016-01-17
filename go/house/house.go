@@ -20,12 +20,20 @@ var (
 	noun = "the house that Jack built."
 )
 
-// Embed work like relPhrase + nounPhrase
+// Embed embeds a noun phrase as the object of relative clause with a
+// transitive verb.
+//
+// Argument relPhrase is a phrase with a relative clause, minus the object
+// of the clause.  That is, relPhrase consists of a subject, a relative
+// pronoun, a transitive verb, possibly a preposition, but then no object.
+//
 func Embed(relPhrase, nounPhrase string) string {
 	return relPhrase + " " + nounPhrase
 }
 
-// Verse generate verse
+// Verse generates a verse of a song with relative clauses that have
+// a recursive structure.
+//
 func Verse(subject string, relPhrases []string, nounPhrase string) string {
 	if len(relPhrases) <= 0 {
 		return Embed(subject, nounPhrase)
@@ -33,7 +41,9 @@ func Verse(subject string, relPhrases []string, nounPhrase string) string {
 	return Verse(Embed(subject, relPhrases[0]), relPhrases[1:], nounPhrase)
 }
 
-// Song return the neusery rhyme
+// Song generates the full text of "The House That Jack Built".  Oh yes, you
+// could just return a string literal, but humor us; use Verse as a subroutine.
+//
 func Song() string {
 	relSize := len(rel)
 	lyrics := make([]string, 0, relSize+1)
