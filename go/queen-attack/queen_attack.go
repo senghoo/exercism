@@ -40,12 +40,12 @@ func (a queen) CanAttack(b queen) bool {
 func CanQueenAttack(a, b string) (can bool, err error) {
 	aq, ok := newQueen(a)
 	if !ok {
-		return false, errors.New("arg a invaild")
+		return false, errors.New("queen a invaild")
 	}
 
 	bq, ok := newQueen(b)
 	if !ok {
-		return false, errors.New("arg a invaild")
+		return false, errors.New("queen b invaild")
 	}
 
 	if aq.x == bq.x && aq.y == bq.y {
