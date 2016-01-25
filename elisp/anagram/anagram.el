@@ -16,7 +16,7 @@
               (string-to-ordered-list word2))))
 
 (defun anagrams-for (word anagrams)
-  (cl-remove-if-not (lambda (x) (anagrams-p (downcase word) (downcase x)))
+  (cl-delete-if-not (lambda (x) (anagrams-p (downcase word) (downcase x)))
                     anagrams))
 
 
