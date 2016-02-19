@@ -6,8 +6,11 @@ class Robot
   end
 
   def reset
-    @name = new_name
+    @history << @name
+    @name = new_name while @history.include? @name
   end
+
+  private
 
   def new_name
     get_rand(2, ('A'..'Z').to_a) + get_rand(3, ('0'..'9').to_a)
