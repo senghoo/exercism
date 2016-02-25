@@ -9,12 +9,7 @@ class Binary
     res = 0
     @bin.each_char do |char|
       res <<= 1
-      case char
-      when '1'
-        res += 1
-      when '0'
-        next
-      end
+      res += 1 if char == '1'
     end
     res
   end
