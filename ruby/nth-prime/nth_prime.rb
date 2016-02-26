@@ -5,12 +5,7 @@ class Prime
     i = 2
     until lst.length == n
       i += 1
-      sqrt_i = Math.sqrt i
-      next if lst.find { |prime|
-        break nil if prime > sqrt_i
-        i % prime == 0
-      }
-      lst << i
+      lst << i if lst.all? { |prime| i % prime != 0 }
     end
     lst.last
   end
