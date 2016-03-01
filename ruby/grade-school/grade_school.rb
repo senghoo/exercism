@@ -1,10 +1,9 @@
 class School
   def initialize()
-    @students = {}
+    @students = Hash.new { [] }
   end
 
   def add(name, grade)
-    @students[grade] ||= []
     @students[grade] = (@students[grade] << name).sort
   end
 
@@ -13,7 +12,7 @@ class School
   end
 
   def grade(grade)
-    @students[grade] || []
+    @students[grade]
   end
 
   VERSION = 1
