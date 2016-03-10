@@ -2,7 +2,7 @@ class PhoneNumber
   attr_reader :number
   def initialize(phone)
     @number = '0000000000'
-    return if phone.each_char.any? { |e| ('a'..'z').cover? e }
+    return unless phone =~ /^[\d\.\(\)\-\s]+$/
     number = phone.each_char.collect { |e| e if ('0'..'9').cover? e }.join
     if number.length == 10
       @number = number
