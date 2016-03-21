@@ -5,4 +5,4 @@ Emacs lisp version (13/13) finished.
 
 Go version (20/72) WIP.
 
-Ruby version (9/66) WIP
+Ruby version (16/66) WIP
